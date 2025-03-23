@@ -168,10 +168,9 @@ h6 {
 }
 
 .title-img {
-  width: 60%;
-  transform: rotate(25deg);
+  width: 100%;
   position: absolute;
-  right: 30%;
+  left: 10%;
 }
 
 .section-color-1 {
