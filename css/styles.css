@@ -55,9 +55,14 @@ h6 {
   padding: 7% 15%;
 }
 
-.colored-section {
+.section-color-2 {
   color: white;
-  background-color: #ff4c68;
+  background-color: #ef7126;
+}
+
+.section-color-3 {
+  color: white;
+  background-color: #9e74b2;
 }
 
 /* .card {
@@ -73,11 +78,11 @@ h6 {
 }
 
 .facolor {
-  color: #ef8172;
+  color: #fff;
 }
 
 .facolor:hover {
-  color: #ff4c68;
+  color: #9e74b2;
 }
 
 .featureLogo {
@@ -85,7 +90,7 @@ h6 {
 }
 
 .FeatureP {
-  color: #8f8f8f;
+  color: #000;
 }
 
 .FeatureSect {
@@ -169,8 +174,8 @@ h6 {
   right: 30%;
 }
 
-.white-section {
-  background-color: white;
+.section-color-1 {
+  background-color: #b7d462;
 }
 
 /* MEDIA QUERY */
