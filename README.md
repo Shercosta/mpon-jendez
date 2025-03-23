@@ -1,1 +1,1 @@
-TinDog Responsive Website for my FullStack Web Developer course on Udemy
+Simple website for Mpon Jendez's herbs business
