@@ -60,6 +60,8 @@ function initiateProducts() {
 
 initiateProducts();
 
+// Cart
+
 var cartItem = 0;
 
 if (cartItem > 0) {
@@ -77,7 +79,21 @@ function updateCartNumber() {
   }
 }
 
-document.getElementById("item1").addEventListener("click", function () {
-  cartItem++;
-  updateCartNumber();
-});
+// Selected Products
+
+let selectedProducts = []; // contains items codes
+
+// Products Listener
+
+function ListenItems() {
+  items.map((item) => {
+    document.getElementById(item.code).addEventListener("click", function () {
+      cartItem++;
+      updateCartNumber();
+      selectedProducts.push(item.code);
+    });
+  });
+}
+
+ListenItems();
+updateCartNumber();
