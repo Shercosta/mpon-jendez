@@ -1,3 +1,69 @@
+import { items } from "./items.js";
+
+// Initiate Products
+
+function initiateProducts() {
+  const element = document.getElementById("toInitiateProducts");
+
+  if (element) {
+    items.map((item) => {
+      const pricingColumnDiv = document.createElement("div");
+      pricingColumnDiv.classList.add(
+        "prcing-column",
+        "col-lg-4",
+        "col-md-6",
+        "col-sm-12"
+      );
+
+      const pricingCardDiv = document.createElement("div");
+      pricingCardDiv.classList.add("card");
+      pricingCardDiv.setAttribute("style", "height: 100%");
+
+      const cardHeaderDiv = document.createElement("div");
+      cardHeaderDiv.classList.add("card-header");
+
+      const h3 = document.createElement("h3");
+      h3.innerText = item.name;
+
+      cardHeaderDiv.appendChild(h3);
+      pricingCardDiv.appendChild(cardHeaderDiv);
+
+      const cardBodyDiv = document.createElement("div");
+      cardBodyDiv.classList.add("card-body");
+
+      const h2 = document.createElement("h2");
+      h2.innerText = item.price;
+
+      cardBodyDiv.appendChild(h2);
+      item.lists.map((list) => {
+        const p = document.createElement("p");
+        p.innerText = list;
+
+        cardBodyDiv.appendChild(p);
+      });
+
+      pricingCardDiv.appendChild(cardBodyDiv);
+
+      const cardFooterDiv = document.createElement("div");
+      cardFooterDiv.classList.add("card-footer");
+
+      const button = document.createElement("button");
+      button.classList.add("btn", "btn-lg", "w-100", "btn-outline-dark");
+      button.setAttribute("id", item.code);
+      button.innerText = "Masuk Keranjang";
+
+      cardFooterDiv.appendChild(button);
+      pricingCardDiv.appendChild(cardFooterDiv);
+
+      pricingColumnDiv.appendChild(pricingCardDiv);
+
+      element.appendChild(pricingColumnDiv);
+    });
+  }
+}
+
+initiateProducts();
+
 var cartItem = 0;
 
 if (cartItem > 0) {
@@ -5,24 +71,6 @@ if (cartItem > 0) {
 } else {
   document.getElementById("cartnumber").style.visibility = "hidden";
 }
-
-const items = [
-  {
-    code: "item1",
-    name: "Jamu 1",
-    price: 100,
-  },
-  {
-    code: "item2",
-    name: "Jamu 2",
-    price: 200,
-  },
-  {
-    code: "item3",
-    name: "Jamu 3",
-    price: 300,
-  },
-];
 
 function updateCartNumber() {
   document.getElementById("cartnumber").innerText = cartItem;
