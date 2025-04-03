@@ -81,7 +81,76 @@ function updateCartNumber() {
 
 // Selected Products
 
-let selectedProducts = []; // contains items codes
+let selectedProducts = []; // contains items codes and amount
+// {id: item.code, amount: 1}
+
+function GetProductByCode(code) {
+  return items.find((item) => item.code === code);
+}
+
+function DisplaySelectedProducts() {
+  document.getElementById("DisplaySelectedProducts").innerHTML = `<tr>
+              <th></th>
+              <th>Nama Item</th>
+              <th>Jumlah</th>
+              <th></th>
+              <th>Total Harga</th>
+              <th></th>
+            </tr>`;
+
+  selectedProducts.map((product) => {
+    const currentItem = GetProductByCode(product.id);
+
+    const tr = document.createElement("tr");
+
+    const td1 = document.createElement("td");
+    const td2 = document.createElement("td");
+    const td3 = document.createElement("td");
+    const td4 = document.createElement("td");
+    const td5 = document.createElement("td");
+    const td6 = document.createElement("td");
+
+    const minus = document.createElement("i");
+    minus.classList.add("fa-solid", "fa-square-minus");
+
+    const plus = document.createElement("i");
+    plus.classList.add("fa-solid", "fa-square-plus");
+
+    const deleteSymbol = document.createElement("i");
+    deleteSymbol.classList.add("fa-solid", "fa-trash");
+
+    td1.appendChild(minus);
+    td4.appendChild(plus);
+    td6.appendChild(deleteSymbol);
+
+    const itemName = document.createElement("p");
+    itemName.classList.add("mb-0");
+    itemName.innerText = currentItem.name;
+
+    td2.appendChild(itemName);
+
+    const itemAmount = document.createElement("p");
+    itemAmount.classList.add("mb-0");
+    itemAmount.innerText = product.amount;
+
+    td3.appendChild(itemAmount);
+
+    const itemPrice = document.createElement("p");
+    itemPrice.classList.add("mb-0");
+    itemPrice.innerText = "Rp. " + Number(currentItem.price * product.amount);
+
+    td5.appendChild(itemPrice);
+
+    tr.appendChild(td1);
+    tr.appendChild(td2);
+    tr.appendChild(td3);
+    tr.appendChild(td4);
+    tr.appendChild(td5);
+    tr.appendChild(td6);
+
+    document.getElementById("DisplaySelectedProducts").appendChild(tr);
+  });
+}
 
 // Products Listener
 
@@ -90,7 +159,19 @@ function ListenItems() {
     document.getElementById(item.code).addEventListener("click", function () {
       cartItem++;
       updateCartNumber();
-      selectedProducts.push(item.code);
+
+      let existSelectedProduct = selectedProducts.find(
+        (product) => product.id === item.code
+      );
+
+      if (existSelectedProduct) {
+        existSelectedProduct.amount++;
+      } else {
+        selectedProducts.push({ id: item.code, amount: 1 });
+      }
+
+      DisplaySelectedProducts();
+      // selectedProducts.push(item.code);
     });
   });
 }
