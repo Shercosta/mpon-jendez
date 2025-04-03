@@ -15,6 +15,6 @@ export const items = [
     code: "item3",
     name: "Jamu 3",
     price: 300,
-    lists: ["Benefit 1", "Benefit 2", "Benefit 3", "Benefit 4"],
+    lists: ["Benefit 1", "Benefit 2", "Benefit 3"],
   },
 ];

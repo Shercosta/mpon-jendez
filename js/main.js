@@ -8,12 +8,7 @@ function initiateProducts() {
   if (element) {
     items.map((item) => {
       const pricingColumnDiv = document.createElement("div");
-      pricingColumnDiv.classList.add(
-        "prcing-column",
-        "col-lg-4",
-        "col-md-6",
-        "col-sm-12"
-      );
+      pricingColumnDiv.classList.add("prcing-column", "col");
 
       const pricingCardDiv = document.createElement("div");
       pricingCardDiv.classList.add("card");
@@ -32,6 +27,7 @@ function initiateProducts() {
       cardBodyDiv.classList.add("card-body");
 
       const h2 = document.createElement("h2");
+      h2.classList.add("price-text");
       h2.innerText = item.price;
 
       cardBodyDiv.appendChild(h2);
