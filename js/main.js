@@ -1,5 +1,9 @@
 import { items } from "./items.js";
 
+function nominalize(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 // Initiate Products
 
 function initiateProducts() {
@@ -98,6 +102,8 @@ function DisplaySelectedProducts() {
               <th></th>
             </tr>`;
 
+  let totalOrders = 0;
+
   selectedProducts.map((product) => {
     const currentItem = GetProductByCode(product.id);
 
@@ -137,7 +143,10 @@ function DisplaySelectedProducts() {
 
     const itemPrice = document.createElement("p");
     itemPrice.classList.add("mb-0");
-    itemPrice.innerText = "Rp. " + Number(currentItem.price * product.amount);
+    const totalHarga = Number(currentItem.price * product.amount) * 1000;
+    itemPrice.innerText = "Rp. " + nominalize(totalHarga);
+
+    totalOrders += totalHarga;
 
     td5.appendChild(itemPrice);
 
@@ -150,6 +159,11 @@ function DisplaySelectedProducts() {
 
     document.getElementById("DisplaySelectedProducts").appendChild(tr);
   });
+
+  // update Total Belanja
+
+  document.getElementById("calculatedTotalOrders").innerText =
+    "Rp. " + nominalize(totalOrders);
 }
 
 // Products Listener
