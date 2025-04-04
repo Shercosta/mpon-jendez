@@ -1,11 +1,12 @@
 import { items } from "./items.js";
+import { GetProductByCode, nominalize } from "./core-functions.js";
 
 const baseWaLink = "https://wa.me/6281112525686?text=";
 const haloMponJendez = "Halo Mpon Jendez!";
 
-function nominalize(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-}
+// function nominalize(number) {
+//   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+// }
 
 // Initiate Products
 
@@ -91,9 +92,9 @@ function updateCartNumber() {
 let selectedProducts = []; // contains items codes and amount
 // {id: item.code, amount: 1}
 
-function GetProductByCode(code) {
-  return items.find((item) => item.code === code);
-}
+// function GetProductByCode(code) {
+//   return items.find((item) => item.code === code);
+// }
 
 function DisplaySelectedProducts() {
   document.getElementById("DisplaySelectedProducts").innerHTML = `<tr>
