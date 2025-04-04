@@ -1,5 +1,8 @@
 import { items } from "./items.js";
 
+const baseWaLink = "https://wa.me/6281112525686?text=";
+const haloMponJendez = "Halo Mpon Jendez!";
+
 function nominalize(number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 }
@@ -103,8 +106,6 @@ function DisplaySelectedProducts() {
             </tr>`;
 
   let totalOrders = 0;
-
-  console.log(selectedProducts);
 
   selectedProducts.map((product) => {
     const currentItem = GetProductByCode(product.id);
@@ -221,9 +222,43 @@ function ListenItems() {
 ListenItems();
 updateCartNumber();
 
+// Logic to generate jsId of orders
+
+function GenerateJsId() {
+  // clone selectedProducts
+  let selectedProductsClone = [...selectedProducts];
+
+  let generatedJsId = [];
+
+  selectedProductsClone.forEach((product) => {
+    const currentItem = GetProductByCode(product.id);
+    const jsId = currentItem.jsId;
+    const amount = product.amount;
+    const completeId = `${jsId}-${amount}`;
+    generatedJsId.push(completeId);
+  });
+
+  return generatedJsId.join("/");
+}
+
+// Clear Cart and Checkout
+
 document.getElementById("clearCart").addEventListener("click", function () {
   selectedProducts = [];
   cartItem = 0;
   updateCartNumber();
   DisplaySelectedProducts();
+});
+
+document.getElementById("checkout").addEventListener("click", function () {
+  if (selectedProducts.length > 0) {
+    const jsid = GenerateJsId();
+
+    const message = ` Saya ingin memesan Jamu dengan kode: *${jsid}*`;
+
+    const url = baseWaLink + encodeURIComponent(haloMponJendez + message);
+    const win = window.open(url, "_blank");
+  } else {
+    alert("Keranjang Belanja Kosong!");
+  }
 });
