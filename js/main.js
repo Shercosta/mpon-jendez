@@ -104,6 +104,8 @@ function DisplaySelectedProducts() {
 
   let totalOrders = 0;
 
+  console.log(selectedProducts);
+
   selectedProducts.map((product) => {
     const currentItem = GetProductByCode(product.id);
 
@@ -122,12 +124,38 @@ function DisplaySelectedProducts() {
     const plus = document.createElement("i");
     plus.classList.add("fa-solid", "fa-square-plus");
 
-    const deleteSymbol = document.createElement("i");
-    deleteSymbol.classList.add("fa-solid", "fa-trash");
+    const trash = document.createElement("i");
+    trash.classList.add("fa-solid", "fa-trash");
 
     td1.appendChild(minus);
     td4.appendChild(plus);
-    td6.appendChild(deleteSymbol);
+    td6.appendChild(trash);
+
+    // add event listener to plus, minus and trash
+    plus.addEventListener("click", function () {
+      product.amount++;
+      cartItem++;
+      updateCartNumber();
+      DisplaySelectedProducts();
+    });
+
+    minus.addEventListener("click", function () {
+      if (product.amount > 1) {
+        product.amount--;
+        cartItem--;
+        updateCartNumber();
+        DisplaySelectedProducts();
+      }
+    });
+
+    trash.addEventListener("click", function () {
+      selectedProducts = selectedProducts.filter(
+        (selectedProduct) => selectedProduct.id !== product.id
+      );
+      cartItem = cartItem - product.amount;
+      updateCartNumber();
+      DisplaySelectedProducts();
+    });
 
     const itemName = document.createElement("p");
     itemName.classList.add("mb-0");
