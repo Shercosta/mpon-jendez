@@ -4,8 +4,7 @@ import { GetProductByCode, nominalize } from "./core-functions.js";
 const baseWaLink = "https://wa.me/6281112525686?text=";
 const haloMponJendez = "Halo Mpon Jendez!";
 
-const baseRenderPage = window.location.origin;
-console.log(baseRenderPage);
+const baseRenderPage = window.location.origin + "/mpon-jendez/";
 
 // function nominalize(number) {
 //   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -258,7 +257,8 @@ document.getElementById("checkout").addEventListener("click", function () {
   if (selectedProducts.length > 0) {
     const jsid = GenerateJsId();
 
-    const message = ` Saya ingin memesan Jamu dengan kode: *${jsid}*`;
+    const message = ` Saya ingin memesan Jamu dengan kode: *${jsid}*.
+    Konfirmasi pesanan saya pada link berikut: ${baseRenderPage}order-details.html#${jsid}`;
 
     const url = baseWaLink + encodeURIComponent(haloMponJendez + message);
     const win = window.open(url, "_blank");
