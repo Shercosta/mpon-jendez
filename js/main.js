@@ -4,6 +4,9 @@ import { GetProductByCode, nominalize } from "./core-functions.js";
 const baseWaLink = "https://wa.me/6281112525686?text=";
 const haloMponJendez = "Halo Mpon Jendez!";
 
+const baseRenderPage = window.location.origin;
+console.log(baseRenderPage);
+
 // function nominalize(number) {
 //   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 // }
