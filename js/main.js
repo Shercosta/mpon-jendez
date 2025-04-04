@@ -220,3 +220,10 @@ function ListenItems() {
 
 ListenItems();
 updateCartNumber();
+
+document.getElementById("clearCart").addEventListener("click", function () {
+  selectedProducts = [];
+  cartItem = 0;
+  updateCartNumber();
+  DisplaySelectedProducts();
+});
