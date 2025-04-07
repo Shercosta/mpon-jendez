@@ -6,12 +6,6 @@ const haloMponJendez = "Halo Mpon Jendez!";
 
 const baseRenderPage = window.location.origin + "/mpon-jendez/";
 
-// function nominalize(number) {
-//   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-// }
-
-// Initiate Products
-
 function initiateProducts() {
   const element = document.getElementById("toInitiateProducts");
 
@@ -38,7 +32,7 @@ function initiateProducts() {
 
       const h2 = document.createElement("h2");
       h2.classList.add("price-text");
-      if (item.price === 0) {
+      if (item.isCommingSoon) {
         h2.innerText = "Coming Soon";
       } else {
         h2.innerText = item.price + "K";
@@ -63,7 +57,7 @@ function initiateProducts() {
       button.innerText = "Masuk Keranjang";
 
       // disable button if item price is 0
-      if (item.price === 0) {
+      if (item.isCommingSoon) {
         button.setAttribute("disabled", true);
         button.innerText = "Coming Soon";
       }
