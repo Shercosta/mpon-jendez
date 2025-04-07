@@ -38,7 +38,11 @@ function initiateProducts() {
 
       const h2 = document.createElement("h2");
       h2.classList.add("price-text");
-      h2.innerText = item.price;
+      if (item.price === 0) {
+        h2.innerText = "Coming Soon";
+      } else {
+        h2.innerText = item.price + "K";
+      }
 
       cardBodyDiv.appendChild(h2);
       item.lists.map((list) => {
@@ -57,6 +61,12 @@ function initiateProducts() {
       button.classList.add("btn", "btn-lg", "w-100", "btn-outline-dark");
       button.setAttribute("id", item.code);
       button.innerText = "Masuk Keranjang";
+
+      // disable button if item price is 0
+      if (item.price === 0) {
+        button.setAttribute("disabled", true);
+        button.innerText = "Coming Soon";
+      }
 
       cardFooterDiv.appendChild(button);
       pricingCardDiv.appendChild(cardFooterDiv);
