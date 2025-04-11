@@ -74,6 +74,69 @@ function initiateProducts() {
 
 initiateProducts();
 
+function initiateProductDescriptions() {
+  const element = document.getElementById("toInitiateProductDescriptions");
+
+  if (element) {
+    items.map((item, index) => {
+      const rowDiv = document.createElement("div");
+      rowDiv.classList.add("row", "py-5");
+      rowDiv.setAttribute(
+        "style",
+        "background-color: " +
+          item.bgColor +
+          ";" +
+          " color: " +
+          item.txtColor +
+          ";"
+      );
+
+      const imgDiv = document.createElement("div");
+      imgDiv.classList.add("col-lg-4", "order-0", "order-lg-0");
+      const imgImg = document.createElement("img");
+      imgImg.setAttribute("src", item.imagePath);
+      imgImg.setAttribute("alt", item.name);
+      imgImg.classList.add("img-fluid");
+      imgDiv.appendChild(imgImg);
+
+      const textDiv = document.createElement("div");
+      textDiv.classList.add(
+        "col-lg-8",
+        "m-auto",
+        "p-3",
+        "order-1",
+        "order-lg-0"
+      );
+
+      const h3 = document.createElement("h3");
+      h3.innerText = item.longName;
+      if (index % 2 === 0) {
+        rowDiv.classList.add("product-name-l");
+      } else {
+        rowDiv.classList.add("product-name-r");
+      }
+      textDiv.appendChild(h3);
+
+      const p = document.createElement("p");
+      p.classList.add("product-description");
+      p.innerText = item.description;
+      textDiv.appendChild(p);
+
+      if (index % 2 === 0) {
+        rowDiv.appendChild(imgDiv);
+        rowDiv.appendChild(textDiv);
+      } else {
+        rowDiv.appendChild(textDiv);
+        rowDiv.appendChild(imgDiv);
+      }
+
+      element.appendChild(rowDiv);
+    });
+  }
+}
+
+initiateProductDescriptions();
+
 // Cart
 
 var cartItem = 0;
