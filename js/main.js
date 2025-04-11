@@ -333,3 +333,18 @@ document.getElementById("checkout").addEventListener("click", function () {
     alert("Keranjang Belanja Kosong!");
   }
 });
+
+// Power up contact button
+
+function PowerUpContactButton() {
+  const buttonIds = ["contact-button", "contact-button2", "contact-button3"];
+
+  buttonIds.map((buttonId) => {
+    document.getElementById(buttonId).addEventListener("click", function () {
+      const url = baseWaLink + encodeURIComponent(haloMponJendez);
+      const win = window.open(url, "_blank");
+    });
+  });
+}
+
+PowerUpContactButton();
