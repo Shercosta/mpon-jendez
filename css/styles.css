@@ -226,3 +226,32 @@ h6 {
 .img-logo {
   max-width: 100px;
 }
+
+@media screen and (max-width: 991px) {
+  .product-name-l,
+  .product-name-c,
+  .product-name-r {
+    text-align: center;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .product-name-l {
+    text-align: left;
+  }
+  .product-name-c {
+    text-align: center;
+  }
+  .product-name-r {
+    text-align: right;
+  }
+}
+
+.product-description {
+  text-align: justify;
+  font-size: large;
+}
+
+.row {
+  margin: 0;
+}
